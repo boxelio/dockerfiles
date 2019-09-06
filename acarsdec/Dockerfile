@@ -39,4 +39,4 @@ COPY --from=builder /usr/local/bin/acarsdec /usr/local/bin/acarsdec
 
 ENTRYPOINT ["tini", "--"]
 
-CMD ["/usr/local/bin/acarsdec -v -N 192.168.1.1:5555 -o0 -r 0 131.525 131.725 131.825"]
+CMD ["/usr/local/bin/acarsdec -v -N 192.168.1.1:5555 -r 0 131.525 131.725 131.825"]
