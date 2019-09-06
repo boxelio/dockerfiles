@@ -51,3 +51,10 @@ ADD sdr.conf /root/sdr.conf
 ADD start.sh /root/start.sh
 
 ENTRYPOINT [ "tini", "--", "/bin/sh", "/root/start.sh" ]
+
+LABEL maintainer="kevin@welikeinc.com" \
+      org.label-schema.name="direwolf" \
+      org.label-schema.description="Multi-arch Docker container for direwolf" \
+      org.label-schema.url="https://github.com/boxelio/dockerfiles/direwolf" \
+      org.label-schema.vcs-url="https://github.com/boxelio/dockerfiles" \
+      org.label-schema.schema-version="1.0"
