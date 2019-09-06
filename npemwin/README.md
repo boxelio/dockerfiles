@@ -14,7 +14,7 @@ Byteblaster Npemwin
 
 Npemwin can be used independently of nbsp. In that mode, it can connect to any number of byte blaster servers or to a directly attached emwin serial (WX12/13) device. In any case, it will serve the data to any number of byte blaster clients, including other instances of npemwin itself, and it can relay the data by ldm and nntp.
 
-It can be configured to register itself with the NWS master host to be advertised as a ``public'' server and appear in the list of available servers. It has no hard-coded limits to the number of clients it can serve. The number can be limited in the run-time configuration file if desired. Clients can be dennied or allow access through the tcpwrappers /etc/hosts.allow file. When used in this way npemwin tries to imitate ``bug for bug'' the behaviour of a regular BB server, as seen by either the BB clients, the BB servers or the master host.
+It can be configured to register itself with the NWS master host to be advertised as a "public" server and appear in the list of available servers. It has no hard-coded limits to the number of clients it can serve. The number can be limited in the run-time configuration file if desired. Clients can be dennied or allow access through the tcpwrappers /etc/hosts.allow file. When used in this way npemwin tries to imitate ``bug for bug'' the behaviour of a regular BB server, as seen by either the BB clients, the BB servers or the master host.
 
 The following are some of the more important features.
 
