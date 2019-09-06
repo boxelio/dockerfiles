@@ -1,5 +1,9 @@
 FROM alpine:3.10
 
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM."
+
 RUN apk add --no-cache chrony tini
 
 COPY chrony.conf /etc/chrony/chrony.conf
