@@ -12,11 +12,11 @@ ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM."
 
 RUN apk add --no-cache \
-    python2 python2-dev py2-pip git build-base automake autoconf
+    python3 python3-dev git build-base automake autoconf
 
 RUN git clone https://github.com/gnuradio/pybombs -b master && \
     cd pybombs && \
-    python setup.py install
+    python3 setup.py install
 
 RUN pybombs -v prefix init /pybombs
 RUN pybombs -v recipes add gr-recipes git+https://github.com/gnuradio/gr-recipes.git && \
