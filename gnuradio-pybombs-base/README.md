@@ -1,6 +1,6 @@
 # gnuradio-pybombs-base
 
-Docker base image for pybombs based containers.
+Docker base image for pybombs based containers, itself based on Alpine.
 
 ## Upstream Source
 
