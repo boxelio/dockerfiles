@@ -2,8 +2,8 @@ FROM alpine:3.10
 
 LABEL maintainer="kevin@welikeinc.com" \
       org.label-schema.name="direwolf" \
-      org.label-schema.description="Multi-arch Docker container for direwolf" \
-      org.label-schema.url="https://github.com/boxelio/dockerfiles/direwolf" \
+      org.label-schema.description="Multi-arch Docker container for weewx" \
+      org.label-schema.url="https://github.com/boxelio/dockerfiles/weewx" \
       org.label-schema.vcs-url="https://github.com/boxelio/dockerfiles" \
       org.label-schema.schema-version="1.0"
 
@@ -47,8 +47,6 @@ ARG WX_GROUP=dialout
 ARG WX_UID=2071
 ARG XTIDE_SHA=e5c4afbb17269fdde296e853f2cb84845ed1c1bb1932f780047ad71d623bc681
 
-COPY install-input.txt requirements/ /root/
-
 RUN apk add --no-cache --update \
     curl freetype libjpeg libstdc++ openssh openssl python2 py-configobj \
     py-mysqldb rsync rsyslog
@@ -60,6 +58,9 @@ RUN apk add --no-cache --virtual .fetch-deps \
 RUN adduser -u $WX_UID -s /bin/sh -G $WX_GROUP -D $WX_USER
 
 RUN mkdir -p /usr/share/xtide /build/libtcd /build/xtide
+
+COPY requirements/ /root/
+COPY install-input.txt /root/
 
 RUN cd build && \
     curl -sLo get-pip.py $GETPIP_URI && \
@@ -87,17 +88,21 @@ RUN cd build && \
       -r /root/amd64.txt && \
     tar xf weewx.tar.gz --strip-components=1 && \
     ./setup.py build && ./setup.py install < /root/install-input.txt && \
-    /home/$WX_USER/bin/wee_extension --install /build/weewx-forecast.tgz && \
-    cd /build/libtcd && \
+    /home/$WX_USER/bin/wee_extension --install /build/weewx-forecast.tgz
+
+RUN cd /build/libtcd && \
     tar xf /build/libtcd.tar.bz2 --strip-components=1 && \
-    ./configure && make install && \
-    cd /build/xtide && \
+    ./configure && make install
+
+RUN cd /build/xtide && \
     tar xf /build/xtide.tar.bz2 --strip-components=1 && \
-    ./configure --prefix=/usr && make install && \
-    cd /build && tar xf harmonics.tar.bz2 --strip-components=1 && \
+    ./configure --prefix=/usr && make install
+
+RUN cd /build && tar xf harmonics.tar.bz2 --strip-components=1 && \
     mv harmonics*.tcd /usr/share/xtide/harmonics.tcd && \
-    echo /usr/share/xtide > /etc/xtide.conf && \
-    apk del .fetch-deps && \
+    echo /usr/share/xtide > /etc/xtide.conf
+
+RUN apk del .fetch-deps && \
     rm -fr /build /home/$WX_USER/weewx.conf.2* /home/$WX_USER/docs \
       /root/.cache /var/cache/apk/* /var/log/* && \
     find /home/$WX_USER/bin -name '*.pyc' -exec rm '{}' +;
