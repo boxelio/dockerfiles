@@ -1,10 +1,10 @@
 # multimon-ng
 
-## Author Source
+## Upstream Source
 
 [https://github.com/EliasOenal/multimon-ng](https://github.com/EliasOenal/multimon-ng)
 
-## Author Description
+## Upstream Description
 
 multimon-ng is the successor of multimon. It decodes the following digital transmission modes:
 
