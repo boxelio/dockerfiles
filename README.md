@@ -1,2 +1,3 @@
 # dockerfiles
-Docker build files for containers used by Boxels
+Docker build files for containers used by Boxos and Boxels
+
