@@ -1,11 +1,18 @@
 FROM alpine:3.9 as base
 
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
+LABEL maintainer="kevin@welikeinc.com" \
+      org.label-schema.name="direwolf" \
+      org.label-schema.description="Multi-arch Docker container for direwolf" \
+      org.label-schema.url="https://github.com/boxelio/dockerfiles/direwolf" \
+      org.label-schema.vcs-url="https://github.com/boxelio/dockerfiles" \
+      org.label-schema.schema-version="1.0"
 
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM."
+
+ENV LANG=C.UTF-8
+ENV LC_ALL=C.UTF-8
 
 ARG ALPINE_MIRROR="http://dl-cdn.alpinelinux.org/alpine"
 RUN cat /etc/apk/repositories && \
@@ -51,10 +58,3 @@ ADD sdr.conf /root/sdr.conf
 ADD start.sh /root/start.sh
 
 ENTRYPOINT [ "tini", "--", "/bin/sh", "/root/start.sh" ]
-
-LABEL maintainer="kevin@welikeinc.com" \
-      org.label-schema.name="direwolf" \
-      org.label-schema.description="Multi-arch Docker container for direwolf" \
-      org.label-schema.url="https://github.com/boxelio/dockerfiles/direwolf" \
-      org.label-schema.vcs-url="https://github.com/boxelio/dockerfiles" \
-      org.label-schema.schema-version="1.0"

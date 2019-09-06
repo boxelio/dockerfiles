@@ -1,5 +1,12 @@
 FROM alpine:3.9 as base
 
+LABEL maintainer="kevin@welikeinc.com" \
+      org.label-schema.name="multimon-ng" \
+      org.label-schema.description="Multi-arch Docker container for multimon-ng" \
+      org.label-schema.url="https://github.com/boxelio/dockerfiles/multimon-ng" \
+      org.label-schema.vcs-url="https://github.com/boxelio/dockerfiles" \
+      org.label-schema.schema-version="1.0"
+
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM."
@@ -35,10 +42,3 @@ COPY --from=builder /usr/local/bin/multimon-ng /usr/local/bin/multimon-ng
 ENTRYPOINT ["tini", "--"]
 
 CMD ["/usr/local/bin/multimon-ng"]
-
-LABEL maintainer="kevin@welikeinc.com" \
-      org.label-schema.name="multimon-ng" \
-      org.label-schema.description="Multi-arch Docker container for multimon-ng" \
-      org.label-schema.url="https://github.com/boxelio/dockerfiles/multimon-ng" \
-      org.label-schema.vcs-url="https://github.com/boxelio/dockerfiles" \
-      org.label-schema.schema-version="1.0"

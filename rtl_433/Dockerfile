@@ -1,5 +1,12 @@
 FROM alpine:3.10 as base
 
+LABEL maintainer="kevin@welikeinc.com" \
+      org.label-schema.name="rtl_433" \
+      org.label-schema.description="Multi-arch Docker container for rtl_433" \
+      org.label-schema.url="https://github.com/boxelio/dockerfiles/rtl_433" \
+      org.label-schema.vcs-url="https://github.com/boxelio/dockerfiles" \
+      org.label-schema.schema-version="1.0"
+
 ARG TARGETPLATFORM
 ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM."
@@ -36,10 +43,3 @@ COPY --from=builder /usr/local/etc/rtl_433/* /usr/local/etc/rtl_433/
 ENTRYPOINT ["tini", "--"]
 
 CMD ["/usr/local/bin/rtl_433"]
-
-LABEL maintainer="kevin@welikeinc.com" \
-      org.label-schema.name="rtl_433" \
-      org.label-schema.description="Multi-arch Docker container for rtl_433" \
-      org.label-schema.url="https://github.com/boxelio/dockerfiles/rtl_433" \
-      org.label-schema.vcs-url="https://github.com/boxelio/dockerfiles" \
-      org.label-schema.schema-version="1.0"
