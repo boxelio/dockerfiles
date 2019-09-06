@@ -14,4 +14,4 @@ Typical accuracy between two machines synchronised over the Internet is within a
 
 ## Platforms
 
-[Dockerfile (armhf)](Dockerfile.armhf)
+armv7, arm64, amd64
