@@ -1,3 +1,3 @@
 #! /bin/sh
 
-/usr/local/bin/dump978 --sdr-device driver=rtlsdr --raw-port 30978
+/usr/local/bin/dump978-fa --sdr-device driver=rtlsdr --raw-port 30978

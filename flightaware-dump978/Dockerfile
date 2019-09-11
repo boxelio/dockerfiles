@@ -1,5 +1,6 @@
 FROM alpine:3.10 as base
 
+ENV RAW_OUTPUT_PORT=30978
 ENV BRANCH_SOAPYSDR=soapy-sdr-0.5.4
 
 LABEL maintainer="kevin@welikeinc.com" \
@@ -38,16 +39,16 @@ RUN apk add swig py-numpy && \
     make -j && \
     make install
 
-RUN git clone "https://github.com/flightaware/dump978.git" /root/dump978 && \
+RUN git clone -b dev "https://github.com/flightaware/dump978.git" /root/dump978 && \
     cd /root/dump978 && make && make faup978
     
 FROM base
 
 COPY --from=builder /root/dump978/dump978-fa /usr/local/bin/dump978-fa
-COPY --from=builder /root/dump978/skyview978 /usr/local/bin/skyview978
+# COPY --from=builder /root/dump978/skyview978 /usr/local/bin/skyview978
 COPY --from=builder /root/dump978/faup978 /usr/local/bin/faup978
 COPY start.sh /root/start.sh
 
-EXPOSE 30978
+EXPOSE ${RAW_OUTPUT_PORT}
 
 ENTRYPOINT ["tini", "--", "/bin/sh", "/root/start.sh"]
