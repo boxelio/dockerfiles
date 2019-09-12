@@ -1,5 +1,5 @@
 # dockerfiles
-Docker build files for containers used by Boxos and Boxels.
+Docker build files for containers used by BoxOS and Boxels.
 
 # Cross-compile Ready
 Most of these dockerfiles have been tested with Docker's experimental `buildx` feature that cross-compiles images on a variety of architectures. We have specifically tuned these dockerfiles to compile properly on `armv7`/`arm64` (Raspberry Pi) and `amd64`. They should generally work fine on `x86` as well.
