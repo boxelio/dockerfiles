@@ -42,7 +42,7 @@ FROM base
 RUN mkdir -p /var/www/tar1090/htdocs
 COPY --from=builder /tmp/tar1090/html /var/www/tar1090/htdocs/
 COPY --from=builder /tmp/tar1090/88-tar1090.conf /etc/lighttpd/conf.available/
-RUN sed --in-place=.bak  -e "s/\/usr\/share\/tar1090\/html\//\/var\/www\/tar1090\/htdocs\//" /etc/lighttpd/conf.available/89-dump1090-fa.conf
+RUN sed --in-place=.bak  -e "s/\/usr\/local\/share\/tar1090\/html\//\/var\/www\/tar1090\/htdocs\//" /etc/lighttpd/conf.available/88-tar1090.conf
 RUN sed --in-place=.bak -e "s/#    \"mod_alias\"/    \"mod_alias\"/" /etc/lighttpd/lighttpd.conf
 RUN sed --in-place=.bak -e "s/#    \"mod_compress\"/    \"mod_compress\"/" /etc/lighttpd/lighttpd.conf
 RUN sed --in-place=.bak -e "s/#    \"mod_redirect\"/    \"mod_redirect\"/" /etc/lighttpd/lighttpd.conf
