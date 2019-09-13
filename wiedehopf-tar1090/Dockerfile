@@ -2,7 +2,7 @@ FROM alpine:3.9 as base
 
 ENV LATITUDE=0.0
 ENV LONGITUDE=0.0
-ENV WEB_PORT="80"
+ENV WEB_PORT="8081"
 
 LABEL maintainer="kevin@welikeinc.com" \
       org.label-schema.name="wiedehopf-tar1090" \
