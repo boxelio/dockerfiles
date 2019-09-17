@@ -17,11 +17,16 @@ ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM."
 
 RUN apk add \
+        build-base \
         git \
+        sqlite-dev \
         tini
 
 RUN mkdir -p /var/www
 RUN cd /var/www && git clone -b ${GIT_BRANCH} ${GIT_SOURCE} flightbox
+RUN cd /var/www/flightbox && gem install bundler && bundle install --deployment --force -V
+RUN ruby -v
+RUN bundle -v
 
 COPY start.sh /root/start.sh
 RUN chmod +x /root/start.sh
