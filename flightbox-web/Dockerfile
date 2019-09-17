@@ -23,11 +23,9 @@ RUN apk add \
 RUN mkdir -p /var/www
 RUN cd /var/www && git clone -b ${GIT_BRANCH} ${GIT_SOURCE} flightbox
 
-WORKDIR /var/www/flightbox
-
-COPY start.sh start.sh
-RUN chmod +x /var/www/flightbox/start.sh
+COPY start.sh /root/start.sh
+RUN chmod +x /root/start.sh
 
 ENTRYPOINT [ "tini", "--" ]
 
-CMD ["/var/www/flightbox/start.sh"]
+CMD ["/root/start.sh"]
