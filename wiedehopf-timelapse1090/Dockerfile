@@ -58,6 +58,7 @@ RUN echo "include \"/etc/lighttpd/conf.enabled/88-timelapse1090.conf\"" >> /etc/
 RUN mkdir -p /etc/default
 COPY --from=builder /tmp/timelapse1090/default /etc/default/timelapse1090
 COPY --from=builder /tmp/timelapse1090/timelapse1090.sh /timelapse1090.sh
+RUN sed --in-place=.bak -e "s/bash/sh/" /timelapse1090.sh
 RUN chmod +x /timelapse1090.sh
 
 COPY start.sh /start.sh
