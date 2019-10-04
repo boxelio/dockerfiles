@@ -17,9 +17,16 @@ RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM."
 
 RUN cat /etc/apk/repositories && \
     apk add --no-cache \
+    autoconf \
+    automake \
+    build-base \
     curl \
+    git \
+    glib-dev \
+    libtool \
+    pkgconf \
     tini
-RUN apk add mono --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
+RUN apk add mono cairo-dev --update-cache --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ --allow-untrusted
 
 ARG DESTINATION_PATH=/vrs/
 
@@ -35,6 +42,9 @@ RUN curl -o /tmp/VirtualRadar.DatabaseWriterPlugin.tar.gz $SOURCE_BASE_URL/Virtu
     tar -xf /tmp/VirtualRadar.DatabaseWriterPlugin.tar.gz -C $DESTINATION_PATH
 RUN curl -o /tmp/VirtualRadar.CustomContentPlugin.tar.gz $SOURCE_BASE_URL/VirtualRadar.CustomContentPlugin.tar.gz && \
     tar -xf /tmp/VirtualRadar.CustomContentPlugin.tar.gz -C $DESTINATION_PATH
+
+RUN git clone https://github.com/mono/libgdiplus.git /tmp/libgdiplus
+RUN cd /tmp/libgdiplus && ./autogen.sh --prefix=/usr/local && make && make install
 
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
