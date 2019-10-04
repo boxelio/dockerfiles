@@ -1,4 +1,4 @@
-FROM alpine:3.10 as base
+FROM alpine:3.9 as base
 
 LABEL maintainer="kevin@welikeinc.com" \
       org.label-schema.name="rtlamr" \
@@ -27,6 +27,11 @@ RUN apk add --no-cache \
         libc-dev \
         libusb-dev \
         go
+
+RUN uname -a
+RUN cat /etc/os-release
+RUN go version
+RUN go env
 
 RUN go get github.com/bemasher/rtlamr && ls -l /root/go/bin
 
