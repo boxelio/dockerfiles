@@ -20,6 +20,7 @@ ${SCRIPT_PATH}/build_and_push.sh gnuradio-pybombs-base
 ${SCRIPT_PATH}/build_and_push.sh mutability-mlat-client
 ${SCRIPT_PATH}/build_and_push.sh multimon-ng
 ${SCRIPT_PATH}/build_and_push.sh npemwin
+${SCRIPT_PATH}/build_and_push.sh readsb
 ${SCRIPT_PATH}/build_and_push.sh rtl_433
 ${SCRIPT_PATH}/build_and_push.sh rtlamr
 ${SCRIPT_PATH}/build_and_push.sh virtual-radar-server
