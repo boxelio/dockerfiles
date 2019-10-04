@@ -46,6 +46,9 @@ RUN curl -o /tmp/VirtualRadar.CustomContentPlugin.tar.gz $SOURCE_BASE_URL/Virtua
 RUN git clone https://github.com/mono/libgdiplus.git /tmp/libgdiplus
 RUN cd /tmp/libgdiplus && ./autogen.sh --prefix=/usr/local && make && make install
 
+ADD flags.tar.gz /vrs/Flags
+ADD silhouettes.tar.gz /vrs/Silhouettes
+
 COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
