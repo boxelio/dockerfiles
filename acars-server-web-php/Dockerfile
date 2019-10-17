@@ -1,5 +1,9 @@
 FROM alpine:3.10
 
+ENV DATABASE_HOST="db"
+ENV DATABASE_PORT="5432"
+ENV DATABASE_USER="postgres"
+ENV DATABASE_PASS=""
 ENV WEB_PORT="80"
 
 LABEL maintainer="kevin@welikeinc.com" \
