@@ -1,6 +1,5 @@
 <?php
-  $dir = 'sqlite:/data/acars/acars.sqb';
-  $dir = "pgsql:host=postgres;port=5432;dbname=acars-server;user=postgres;password=boxel";
+  $dir = "pgsql:host=".$_ENV["DATABASE_HOST"].";port=".$_ENV["DATABASE_PORT"].";dbname=".$_ENV["DATABASE_NAME"].";user=".$_ENV["DATABASE_USER"].";password=".$_ENV["DATABASE_PASS"];
   $dbh  = new PDO($dir) or die("cannot open the database");
 ?>
 
