@@ -1,5 +1,11 @@
 <?php
-  $dir = "pgsql:host=".$_ENV["DATABASE_HOST"].";port=".$_ENV["DATABASE_PORT"].";dbname=".$_ENV["DATABASE_NAME"].";user=".$_ENV["DATABASE_USER"].";password=".$_ENV["DATABASE_PASS"];
+  $db_host = $_SERVER['DATABASE_HOST'];
+  $db_port = $_SERVER['DATABASE_PORT'];
+  $db_name = $_SERVER['DATABASE_NAME'];
+  $db_user = $_SERVER['DATABASE_USER'];
+  $db_pass = $_SERVER['DATABASE_PASS'];
+
+  $dir = "pgsql:host=".$db_host.";port=".$db_port.";dbname=".$db_name.";user=".$db_user.";password=".$db_pass;
   $dbh  = new PDO($dir) or die("cannot open the database");
 ?>
 
