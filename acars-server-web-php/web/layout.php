@@ -6,7 +6,7 @@
   $db_pass = $_SERVER['DATABASE_PASS'];
 
   $dir = "pgsql:host=".$db_host.";port=".$db_port.";dbname=".$db_name.";user=".$db_user.";password=".$db_pass;
-  $dbh  = new PDO($dir) or die("cannot open the database");
+  $dbh = new PDO($dir) or die("cannot open the database");
 ?>
 
 <!DOCTYPE html>
