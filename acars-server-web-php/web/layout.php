@@ -5,14 +5,19 @@
   $db_user = $_SERVER['DATABASE_USER'];
   $db_pass = $_SERVER['DATABASE_PASS'];
 
-  $dir = "pgsql:host=".$db_host.";port=".$db_port.";dbname=".$db_name.";user=".$db_user.";password=".$db_pass;
-  $dbh = new PDO($dir) or die("cannot open the database");
+  try {
+    $dsn = "pgsql:host=".$db_host.";port=".$db_port.";dbname=".$db_name;
+    $dbh = new PDO($dsn, $db_user, $db_pass) or die("cannot open the database");
+  } catch (PDOException $e) {
+    echo "Error! ".$e->getMessage()."<br>";
+    die();
+  }
 ?>
 
 <!DOCTYPE html>
 <html>
   <head>
-    <title><?php echo $title ?? 'ACARS' ?></title>
+    <title>ACARS</title>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
   <body>
@@ -35,7 +40,11 @@
     </nav>
 
     <div id="page">
-      <?php echo $content ?? '' ?>
+      <?php echo $content ?>
     </div>
   </body>
 </html>
+
+<?php
+  $dbh = null;
+?>
