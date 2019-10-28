@@ -1,13 +1,13 @@
-<?php require_once 'layout.php'; ?>
+<?php include 'header.php'; ?>
 
 <?php
-  $query =  "SELECT * FROM Flights WHERE FlightID = \"{$_GET["id"]}\"";
+  $query =  "SELECT * FROM flights WHERE id = ".$_GET["id"];
   $flight = $dbh->query($query)->fetch();
 ?>
 
 <h1>
-  Flight <?php echo $flight[2]; ?>
-  <small>(Tail <?php echo $flight[1]; ?>)</small>
+  Flight <?php echo $flight['flight']; ?>
+  <small>(Tail <?php echo $flight['airframe_id']; ?>)</small>
 </h1>
 
 <h2>Messages</h2>
@@ -27,25 +27,26 @@
     <th>Text</th>
   </tr>
 <?php
-  $query = "SELECT * FROM Messages WHERE FlightID = \"{$_GET["id"]}\"";
+  $query = "SELECT * FROM messages WHERE flight_id = ".$_GET["id"]." ORDER BY timestamp DESC";
   foreach ($dbh->query($query) as $row)
   {
 ?>
   <tr>
-    <td><?php echo $row[0]; ?></td>
-    <td><?php echo $row[2]; ?></td>
-    <td><?php echo $row[3]; ?></td>
-    <td><?php echo $row[4]; ?></td>
-    <td><?php echo $row[5]; ?></td>
-    <td><?php echo $row[6]; ?></td>
-    <td><?php echo $row[7]; ?></td>
-    <td><?php echo $row[8]; ?></td>
-    <td><?php echo $row[9]; ?></td>
-    <td><?php echo $row[10]; ?></td>
-    <td><?php echo $row[11]; ?></td>
-    <td><?php echo $row[12]; ?></td>
+    <td><?php echo $row['id']; ?></td>
+    <td><?php echo $row['timestamp']; ?></td>
+    <td><?php echo $row['station_id']; ?></td>
+    <td><?php echo $row['channel']; ?></td>
+    <td><?php echo $row['error']; ?></td>
+    <td><?php echo $row['signal']; ?></td>
+    <td><?php echo $row['mode']; ?></td>
+    <td><?php echo $row['ack']; ?></td>
+    <td><?php echo $row['label']; ?></td>
+    <td><?php echo $row['block_id']; ?></td>
+    <td><?php echo $row['message_number']; ?></td>
+    <td><?php echo $row['text']; ?></td>
   </tr>
 <?php
   }
-  $dbh = null;
 ?>
+
+<?php include 'footer.php'; ?>

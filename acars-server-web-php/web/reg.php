@@ -1,7 +1,12 @@
-<?php require_once 'layout.php'; ?>
+<?php include 'header.php'; ?>
+
+<?php
+  $query =  "SELECT * FROM airframes WHERE id = ".$_GET["airframe_id"];
+  $airframe = $dbh->query($query)->fetch();
+?>
 
 <h1>
-  <?php echo $_GET["registration"]; ?>
+  <?php echo $airframe['tail']; ?>
 </h1>
 
 <h2>Flights</h2>
@@ -13,15 +18,15 @@
     <th>Updated</th>
   </tr>
 <?php
-  $query =  "SELECT * FROM Flights WHERE Registration = \"{$_GET["registration"]}\"";
+  $query =  "SELECT * FROM flights WHERE airframe_id = ".$_GET["airframe_id"]." ORDER BY created_at DESC";
   foreach ($dbh->query($query) as $row)
   {
 ?>
   <tr>
-    <td><a href="/flight.php?id=<?php echo $row[0]; ?>"><?php echo $row[0]; ?></a></td>
-    <td><?php echo $row[2]; ?></td>
-    <td><?php echo $row[3]; ?></td>
-    <td><?php echo $row[4]; ?></td>
+    <td><a href="/flight.php?id=<?php echo $row['id']; ?>"><?php echo $row['id']; ?></a></td>
+    <td><?php echo $row['flight']; ?></td>
+    <td><?php echo $row['created_at']; ?></td>
+    <td><?php echo $row['updated_at']; ?></td>
   </tr>
 <?php
   }
@@ -29,3 +34,4 @@
 ?>
 </table>
 
+<?php include 'footer.php'; ?>

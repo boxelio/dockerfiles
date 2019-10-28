@@ -1,10 +1,10 @@
-<?php require_once 'layout.php'; ?>
+<?php include 'header.php'; ?>
 
 <?php
   if (isset($_GET["station_id"])) {
-    $query = "SELECT * FROM Messages WHERE StID = \"{$_GET["station_id"]}\" ORDER BY Time DESC";
+    $query = "SELECT * FROM messages WHERE station_id = ".$_GET["station_id"]." ORDER BY timestamp DESC";
   } else {
-    $query = "SELECT * FROM Messages ORDER BY Time Desc";
+    $query = "SELECT * FROM messages ORDER BY timestamp Desc";
   }
   $messages = $dbh->query($query);
 ?>
@@ -32,22 +32,24 @@
   {
 ?>
   <tr>
-    <td rowspan="2" class="align-middle"><?php echo $row[0]; ?></td>
-    <td rowspan="2" class="align-middle"><?php echo $row[2]; ?></td>
-    <td><?php echo $row[3]; ?></td>
-    <td><?php echo round($row[4] / 1000000, 3); ?>&nbsp;MHz</td>
-    <td><?php echo $row[5]; ?></td>
-    <td><?php echo $row[6]; ?></td>
-    <td><?php echo $row[7]; ?></td>
-    <td><?php echo $row[8]; ?></td>
-    <td><?php echo $row[9]; ?></td>
-    <td><?php echo $row[10]; ?></td>
-    <td><?php echo $row[11]; ?></td>
+    <td rowspan="2" class="align-middle"><?php echo $row['id']; ?></td>
+    <td rowspan="2" class="align-middle"><?php echo $row['timestamp']; ?></td>
+    <td><?php echo $row['station_id']; ?></td>
+    <td><?php echo round($row['channel'] / 1000000, 3); ?>&nbsp;MHz</td>
+    <td><?php echo $row['error']; ?></td>
+    <td><?php echo $row['signal']; ?></td>
+    <td><?php echo $row['mode']; ?></td>
+    <td><?php echo $row['ack']; ?></td>
+    <td><?php echo $row['label']; ?></td>
+    <td><?php echo $row['block_id']; ?></td>
+    <td><?php echo $row['message_number']; ?></td>
   </tr>
   <tr>
-    <td colspan="9"><?php echo $row[12]; ?></td>
+    <td colspan="9"><?php echo $row['text']; ?></td>
   </tr>
 <?php
   }
 ?>
 </table>
+
+<?php include 'footer.php'; ?>

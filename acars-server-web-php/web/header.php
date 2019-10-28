@@ -7,7 +7,7 @@
 
   try {
     $dsn = "pgsql:host=".$db_host.";port=".$db_port.";dbname=".$db_name;
-    $dbh = new PDO($dsn, $db_user, $db_pass) or die("cannot open the database");
+    $dbh = new PDO($dsn, $db_user, $db_pass);
   } catch (PDOException $e) {
     echo "Error! ".$e->getMessage()."<br>";
     die();
@@ -25,26 +25,12 @@
       <a class="navbar-brand" href="/">ACARS</a>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Stations</a>
+          <a class="nav-link" href="/stations.php">Stations</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tails</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Flights</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Messages</a>
+          <a class="nav-link" href="/airframes.php">Airframes</a>
         </li>
       </ul>
     </nav>
 
     <div id="page">
-      <?php echo $content ?>
-    </div>
-  </body>
-</html>
-
-<?php
-  $dbh = null;
-?>
