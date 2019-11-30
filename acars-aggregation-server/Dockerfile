@@ -1,12 +1,15 @@
 FROM ubuntu:19.04
 
 ENV DATABASE_HOST=db
-ENV DATABASE_PORT=3306
+ENV DATABASE_PORT=5432
 ENV DATABASE_USER=acars
 ENV DATABASE_PASS=boxel
+ENV DATABASE_NAME=airframes
+
 ENV ACARSDEC_JSON_LISTEN_ADDRESS=0.0.0.0
 ENV ACARSDEC_JSON_LISTEN_PORT=5555
-
+ENV NATS_HOST=nats
+ENV NATS_PORT=4222
 
 ENV GIT_SOURCE="https://github.com/kevinelliott/acars-aggregation-server.git"
 ENV GIT_BRANCH="master"
@@ -37,12 +40,6 @@ RUN apt-get install -yq \
       postgresql-client \
       sudo \
       tini
-
-RUN git clone -b ${GIT_BRANCH} ${GIT_SOURCE} /root/go/src/acars-aggregration-server
-
-RUN go get -u github.com/lib/pq
-RUN go get -u gopkg.in/go-gorp/gorp.v2
-RUN cd /root/go/src/acars-server && go build && go install
 
 COPY start.sh /start.sh
 
