@@ -2,11 +2,12 @@
 
 if [ -d "/root/go/src/acars-aggregation-server" ]
 then
-  git clone -b ${GIT_BRANCH} ${GIT_SOURCE} /root/go/src/acars-aggregation-server
-else
   cd /root/go/src/acars-aggregation-server && git pull
+else
+  git clone -b ${GIT_BRANCH} ${GIT_SOURCE} /root/go/src/acars-aggregation-server
 fi
 
+go get -u github.com/buger/jsonparser
 go get -u github.com/lib/pq
 go get -u gopkg.in/go-gorp/gorp.v2
 go get -u github.com/nats-io/nats.go
