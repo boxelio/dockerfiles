@@ -1,0 +1,30 @@
+{
+  general: {
+    boardName: "New ENiGMA½ BBS"
+  }
+  messageConferences: {
+    local: {
+      name: "Local"
+      desc: "Local Areas"
+      sort: 1
+      default: true
+      areas: {
+        general: {
+          name: "General"
+          desc: "General chit-chat"
+          sort: 1
+          default: true
+        }
+      }
+    }
+  }
+  archivers: {
+    zip: {
+      compressCmd: "7z"
+      decompressCmd: "7z"
+    }
+  }
+  logging: {
+    level: "debug"
+  }
+}
