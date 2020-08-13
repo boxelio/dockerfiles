@@ -2,6 +2,10 @@
 
 Multi-arch docker image of airspy_adsb, an ADS-B decoder written and optimized for the Airspy line of SDRs.
 
+## Docker Image Source
+
+[https://github.com/boxelio/dockerfiles/tree/master/flight/airspy-adsb](https://github.com/boxelio/dockerfiles/tree/master/flight/airspy-adsb)
+
 ## Upstream Source
 
 [https://airspy.com/download/](https://airspy.com/download/)

@@ -31,7 +31,6 @@ RUN apt install -y \
         wget
 
 RUN wget -O /tmp/airspy_adsb.tgz ${AIRSPY_ADSB_URL} && tar zxvf /tmp/airspy_adsb.tgz && mv airspy_adsb /usr/local/bin
-COPY --from=builder /usr/local/bin/airspy_adsb /usr/local/bin/airspy_adsb
 COPY start.sh /start.sh
 
 EXPOSE ${AIRSPY_ADSB_PORT}
