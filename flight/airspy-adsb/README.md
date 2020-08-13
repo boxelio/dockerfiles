@@ -1,4 +1,4 @@
-# airspy_adsb
+# airspy-adsb
 
 Multi-arch docker image of airspy_adsb, an ADS-B decoder written and optimized for the Airspy line of SDRs.
 
