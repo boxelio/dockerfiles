@@ -6,6 +6,6 @@ if [ "$USE_AIRSPY" = 'true' ]; then
 fi
 
 echo "=== Starting readsb..."
-/usr/local/bin/readsb $READSB_RECEIVER_OPTIONS $READSB_DECODER_OPTIONS $READSB_NET_OPTIONS $READSB_JSON_OPTIONS --write-json /run/readsb --quiet
+/usr/local/bin/readsb $READSB_RECEIVER_OPTIONS $READSB_DECODER_OPTIONS $READSB_NET_OPTIONS $READSB_JSON_OPTIONS --lat $LATITUDE --lon $LONGITUDE --write-json /run/readsb --quiet
 
 echo "=== Shutting down..."

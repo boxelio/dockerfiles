@@ -12,7 +12,7 @@ ENV READSB_RAW_OUTPUT_PORT="30002"
 ENV READSB_SBS_OUTPUT_PORT="30003"
 ENV READSB_BEAST_INPUT_PORT="30004"
 ENV READSB_BEAST_OUTPUT_PORT="30005"
-ENV READSB_DECODER_OPTIONS="--max-range 360"
+ENV READSB_DECODER_OPTIONS="--max-range 800"
 ENV READSB_JSON_OPTIONS="--json-location-accuracy 1"
 ENV READSB_NET_OPTIONS="--net --net-heartbeat 60 --net-ro-size 1000 --net-ro-interval 1 --net-ri-port 0 --net-ro-port 30002 --net-sbs-port 30003 --net-bi-port 30004,30104 --net-bo-port 30005"
 # Disable READSB_RECEIVER_OPTIONS if using airspy
