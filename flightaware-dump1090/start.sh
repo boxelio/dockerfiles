@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if [ -n "$LATITUDE" -a -n "$LONGITUDE" ]
-then
-  POSITION="--lat $LATITUDE --lon $LONGITUDE"
-fi
-
-/usr/local/bin/dump1090 $RECEIVER_OPTIONS $DECODER_OPTIONS $NET_OPTIONS $JSON_OPTIONS $POSITION
