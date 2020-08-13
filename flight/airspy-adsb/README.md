@@ -2,6 +2,21 @@
 
 Multi-arch docker image of airspy_adsb, an ADS-B decoder written and optimized for the Airspy line of SDRs.
 
+## Usage
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| AIRSPY_ADSB_PORT | 33333 | Port to expose that will be listened on in AIRSPY_NET |
+| AIRSPY_BIAS | -b | Enable Bias-T if defined |
+| AIRSPY_GAIN | 15 | Gain (from 1 to 21) |
+| AIRSPY_PREAMBLE | 9.87 | |
+| AIRSPY_OPTIONS | -v -f 2 -t 300 | Main set of options to pass in |
+| AIRSPY_SAMPLE_RATE | 20 | Sample rate |
+| AIRSPY_NET | -l 33333:beast | Listen for incoming connections |
+| AIRSPY_G | -g | |
+| AIRSPY_M | -m | |
+| AIRSPY_P | -e | |
+
 ## Docker Image Source
 
 [https://github.com/boxelio/dockerfiles/tree/master/flight/airspy-adsb](https://github.com/boxelio/dockerfiles/tree/master/flight/airspy-adsb)
