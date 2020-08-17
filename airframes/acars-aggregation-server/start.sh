@@ -1,17 +1,16 @@
 #!/bin/sh
 
-if [ -d "/acars_aggregation_server" ]
+if [ -d "/srv/aggregation-server" ]
 then
-  cd /acars_aggregation_server && git pull
+  cd /srv/aggregation-server && git pull
 else
-  git clone -b ${GIT_BRANCH} ${GIT_SOURCE} /acars_aggregation_server
+  git clone -b ${GIT_BRANCH} ${GIT_SOURCE} /srv/aggregation-server
 fi
 
-cd /acars_aggregation_server
-/tmp/dart-sdk/bin/pub get
-/tmp/dart-sdk/bin/dart2native server.dart
+cd /srv/aggregation-server
+./build.sh
 
-/acars_aggregation_server/server.exe \
+/srv/aggregation-server/bin/server.exe \
   --database-host=${DATABASE_HOST} \
   --database-port=${DATABASE_PORT} \
   --database-user=${DATABASE_USER} \

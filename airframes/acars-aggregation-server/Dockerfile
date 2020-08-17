@@ -1,4 +1,4 @@
-FROM ubuntu:19.04
+FROM ubuntu:eoan
 
 ENV DATABASE_HOST=db
 ENV DATABASE_PORT=5432
@@ -11,11 +11,11 @@ ENV NATS_HOST=nats
 ENV NATS_PORT=4222
 
 ENV GIT_SOURCE="https://github.com/kevinelliott/acars-aggregation-server.git"
-ENV GIT_BRANCH="master"
+ENV GIT_BRANCH="last-good"
 
 LABEL maintainer="kevin@welikeinc.com" \
       org.label-schema.name="acars-aggregation-server" \
-      org.label-schema.description="Multi-arch Docker container for acars-aggregation-server, an ACARS server written in Dart" \
+      org.label-schema.description="Multi-arch Docker container for acars-aggregation-server, an ACARS/VDL aggregation server written in Dart" \
       org.label-schema.url="https://github.com/boxelio/dockerfiles/acars-aggregation-server" \
       org.label-schema.vcs-url="https://github.com/boxelio/dockerfiles" \
       org.label-schema.schema-version="1.0"
