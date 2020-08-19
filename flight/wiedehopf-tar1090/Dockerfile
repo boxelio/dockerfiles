@@ -44,10 +44,8 @@ RUN sed --in-place=.bak  -e "s/\/usr\/local\/share\/tar1090\/html\//\/var\/www\/
 RUN sed --in-place=.bak -e "s/#    \"mod_alias\"/    \"mod_alias\"/" /etc/lighttpd/lighttpd.conf
 RUN sed --in-place=.bak -e "s/#    \"mod_compress\"/    \"mod_compress\"/" /etc/lighttpd/lighttpd.conf
 RUN sed --in-place=.bak -e "s/#    \"mod_redirect\"/    \"mod_redirect\"/" /etc/lighttpd/lighttpd.conf
+RUN echo "server.stat-cache-engine = \"disable\"" >> /etc/lighttpd/lighttpd.conf
 RUN echo "server.port=${WEB_PORT}" >> /etc/lighttpd/lighttpd.conf
-# RUN echo "compress.cache-dir          = \"/var/cache/lighttpd/compress/\" \
-# compress.filetype           = ( \"application/javascript\", \"text/css\", \"text/html\", \"text/plain\" ) \
-# " >> /etc/lighttpd/lighttpd.conf
 
 RUN mkdir -p /etc/lighttpd/conf.enabled
 RUN ln -s /etc/lighttpd/conf.available/88-tar1090.conf /etc/lighttpd/conf.enabled
