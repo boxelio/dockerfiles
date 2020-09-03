@@ -18,8 +18,25 @@ env:
   IMAGE_NAME: airframes-aggregation-server
 
 jobs:
-  # Run tests.
-  # See also https://docs.docker.com/docker-hub/builds/automated-testing/
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@master
+        with:
+          version: latest
+          install: true
+      -
+        name: Builder instance name
+        run: echo ${{ steps.buildx.outputs.name }}
+      -
+        name: Available platforms
+        run: echo ${{ steps.buildx.outputs.platforms }}
   test:
     runs-on: ubuntu-latest
 
