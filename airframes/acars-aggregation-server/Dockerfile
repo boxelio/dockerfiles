@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:focal
 
 ENV DATABASE_HOST=db
 ENV DATABASE_PORT=5432
