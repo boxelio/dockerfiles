@@ -16,7 +16,7 @@ on:
 env:
   # TODO: Change variable to your image's name.
   IMAGE_NAME: airframes-backend
-  DOCKERFILE_PATH: airframes/airframes-backend
+  DOCKERFILE_PATH: airframes/acars-backend
   PLATFORMS: linux/amd64,linux/arm/v7,linux/arm64
 
 jobs:
