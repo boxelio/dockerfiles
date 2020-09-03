@@ -1,4 +1,4 @@
-name: Docker airframes-aggregation-server
+name: build-airframes-aggregation-server
 
 on:
   push:
