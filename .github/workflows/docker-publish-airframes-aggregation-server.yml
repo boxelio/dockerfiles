@@ -41,6 +41,7 @@ jobs:
       - name: Build image
         run: |
           cd airframes/acars-aggregation-server
+          docker use --load
           docker build . --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into GitHub Container Registry
