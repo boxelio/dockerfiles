@@ -34,7 +34,7 @@ RUN case "${TARGETARCH}" in \
       arm)   export DART_ARCH='arm' ;; \
       arm64) export DART_ARCH='arm' ;; \
     esac; \
-    wget -O /tmp/dartsdk-${TARGETOS}-${DART_ARCH}-release.zip https://storage.googleapis.com/dart-archive/channels/dev/release/${DART_RELEASE}/sdk/dartsdk-${TARGETOS}-${DART_ARCH}-release.zip && \
+    wget --no-check-certificate -O /tmp/dartsdk-${TARGETOS}-${DART_ARCH}-release.zip https://storage.googleapis.com/dart-archive/channels/dev/release/${DART_RELEASE}/sdk/dartsdk-${TARGETOS}-${DART_ARCH}-release.zip && \
     cd /tmp && \
     unzip dartsdk-${TARGETOS}-${DART_ARCH}-release.zip && \
     ls -l
