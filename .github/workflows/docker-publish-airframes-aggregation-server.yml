@@ -51,6 +51,7 @@ jobs:
       -
         name: Docker Buildx (build)
         run: |
+          cd airframes/acars-aggregation-server
           docker buildx build --output "type=image,push=false" ${{ steps.prepare.outputs.buildx_args }}
       -
         name: Login to DockerHub
@@ -63,9 +64,11 @@ jobs:
         name: Docker Buildx (push)
         if: success() && github.event_name != 'pull_request' && (endsWith(github.ref, github.event.repository.default_branch) || startsWith(github.ref, 'refs/tags/'))
         run: |
+          cd airframes/acars-aggregation-server
           docker buildx build --output "type=image,push=true" ${{ steps.prepare.outputs.buildx_args }}
       -
         name: Docker Check Manifest
         if: success() && github.event_name != 'pull_request' && (endsWith(github.ref, github.event.repository.default_branch) || startsWith(github.ref, 'refs/tags/'))
         run: |
+          cd airframes/acars-aggregation-server
           docker run --rm mplatform/mquery ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}
