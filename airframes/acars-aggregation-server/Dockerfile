@@ -1,4 +1,4 @@
-FROM ubuntu:bionic-slim
+FROM ubuntu:bionic
 
 ENV DATABASE_HOST=db
 ENV DATABASE_PORT=5432
