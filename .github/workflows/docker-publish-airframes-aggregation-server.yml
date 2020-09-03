@@ -41,8 +41,7 @@ jobs:
       - name: Build image
         run: |
           cd airframes/acars-aggregation-server
-          docker use --load
-          docker build . --file Dockerfile --tag $IMAGE_NAME
+          docker build . --load --file Dockerfile --tag $IMAGE_NAME
 
       - name: Log into GitHub Container Registry
       # TODO: Create a PAT with `read:packages` and `write:packages` scopes and save it as an Actions secret `CR_PAT`
