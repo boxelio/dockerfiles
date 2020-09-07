@@ -24,7 +24,6 @@ RUN cat /etc/apk/repositories && \
 
 RUN cat /etc/lighttpd/lighttpd.conf && \
     lighttpd -t -f /etc/lighttpd/lighttpd.conf && \
-    echo "Lighttpd is running..." > /var/www/localhost/htdocs/index.html && \
     addgroup www && \
     adduser -D -H -s /sbin/nologin -G www www
 
@@ -40,7 +39,8 @@ FROM base
 RUN mkdir -p /var/www/tar1090/htdocs
 COPY --from=builder /tmp/tar1090/html /var/www/tar1090/htdocs/
 COPY --from=builder /tmp/tar1090/88-tar1090.conf /etc/lighttpd/conf.available/
-RUN sed --in-place=.bak  -e "s/\/usr\/local\/share\/tar1090\/html\//\/var\/www\/tar1090\/htdocs\//" /etc/lighttpd/conf.available/88-tar1090.conf
+RUN sed --in-place=.bak  -e "s/HTMLPATH/\/var\/www\/tar1090\/htdocs/g" /etc/lighttpd/conf.available/88-tar1090.conf
+RUN sed --in-place=.bak  -e "s/\/INSTANCE//g" /etc/lighttpd/conf.available/88-tar1090.conf
 RUN sed --in-place=.bak -e "s/#    \"mod_alias\"/    \"mod_alias\"/" /etc/lighttpd/lighttpd.conf
 RUN sed --in-place=.bak -e "s/#    \"mod_compress\"/    \"mod_compress\"/" /etc/lighttpd/lighttpd.conf
 RUN sed --in-place=.bak -e "s/#    \"mod_redirect\"/    \"mod_redirect\"/" /etc/lighttpd/lighttpd.conf
