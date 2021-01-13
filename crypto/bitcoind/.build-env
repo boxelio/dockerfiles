@@ -1,0 +1,5 @@
+DOCKER_IMAGE_ORG=boxel
+DOCKER_IMAGE_NAME=bitcoind
+DOCKER_IMAGE_VERSION=latest
+DOCKERFILE=Dockerfile
+PLATFORM=linux/amd64,linux/arm64,linux/arm/v7
