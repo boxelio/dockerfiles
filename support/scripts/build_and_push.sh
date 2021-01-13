@@ -1,11 +1,20 @@
 #!/bin/sh
 
-cd $1
-# docker buildx build --file=$2 --platform=linux/amd64,linux/arm64,linux/arm/v7 -t $3 --push .
-docker buildx build --progress=plain --no-cache --file=Dockerfile --platform=linux/amd64,linux/arm64 -t boxel/$1:latest --push .
-# docker buildx build --progress=plain --no-cache --file=Dockerfile --platform=linux/arm64,linux/arm/v7 -t boxel/$1:latest --push .
-# docker buildx build --progress=plain --no-cache --file=Dockerfile --platform=linux/amd64,linux/arm/v7 -t boxel/$1:latest --push .
-# docker buildx build --progress=plain --no-cache --file=Dockerfile --platform=linux/amd64,linux/arm/v7 -t boxel/$1:latest --push .
-# docker buildx build --progress=plain --file=$2 --platform=linux/amd64,linux/arm64,linux/arm/v7 -t $3 --push .
-# docker buildx build --file=$2 --platform=linux/amd64,linux/arm64,linux/arm/v7 -t $3 --push .
-# docker buildx build --progress=plain --no-cache --file=$2 -t $3 --push .
+if [ ! -f ".build-env" ]; then
+  echo "Local .build-env file does not exists. Create and try again."
+  exit 1
+fi
+
+source .build-env
+TAG=$DOCKER_IMAGE_ORG/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION
+CWD=`pwd`
+
+if [ "$DOCKER_NO_CACHE" = true ]; then
+  NO_CACHE="--no-cache"
+fi
+
+echo "Building from $CWD with tag $TAG"
+BUILD_OPTIONS="--progress=plain $NO_CACHE --file=$DOCKERFILE --platform=$PLATFORM -t $TAG --push ."
+echo "Build options: $BUILD_OPTIONS"
+
+docker buildx build $BUILD_OPTIONS
