@@ -26,22 +26,27 @@ ARG TARGETARCH
 ARG BUILDPLATFORM
 RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM."
 
-RUN apt-get update && apt-get install -y wget sudo unzip
-
-ARG DART_RELEASE=2.7.0-dev.2.1
-RUN case "${TARGETARCH}" in \
-      amd64) export DART_ARCH='x64' ;; \
-      arm)   export DART_ARCH='arm' ;; \
-      arm64) export DART_ARCH='arm' ;; \
-    esac; \
-    wget --no-check-certificate -O /tmp/dartsdk-${TARGETOS}-${DART_ARCH}-release.zip https://storage.googleapis.com/dart-archive/channels/dev/release/${DART_RELEASE}/sdk/dartsdk-${TARGETOS}-${DART_ARCH}-release.zip && \
-    cd /tmp && \
-    unzip dartsdk-${TARGETOS}-${DART_ARCH}-release.zip && \
-    ls -l
-
 RUN apt-get update && apt-get install -y \
       git \
-      tini
+      tini \
+      wget \
+      sudo \
+      unzip
+
+ARG DART_RELEASE=2.9.1
+RUN case "${TARGETARCH}" in \
+      amd64) export DART_ARCH='amd64' ;; \
+      arm)   export DART_ARCH='arm' ;; \
+      arm64) export DART_ARCH='arm' ;; \
+    esac;
+
+# RUN wget --no-check-certificate -O /tmp/dartsdk-${TARGETOS}-${DART_ARCH}-release.zip https://storage.googleapis.com/dart-archive/channels/dev/release/${DART_RELEASE}/sdk/dartsdk-${TARGETOS}-${DART_ARCH}-release.zip && \
+#     cd /tmp && \
+#     unzip dartsdk-${TARGETOS}-${DART_ARCH}-release.zip && \
+#     ls -l
+
+RUN wget -O /tmp/dart-${DART_RELEASE}-${DART_ARCH}.deb https://storage.googleapis.com/dart-archive/channels/stable/release/${DART_RELEASE}/linux_packages/dart_${DART_RELEASE}-1_${DART_ARCH}.deb && \
+    dpkg -i /tmp/dart-${DART_RELEASE}-${DART_ARCH}.deb
 
 COPY start.sh /start.sh
 

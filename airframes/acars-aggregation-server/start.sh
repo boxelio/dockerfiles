@@ -1,5 +1,7 @@
 #!/bin/sh
 
+export PATH="$PATH:/usr/lib/dart/bin"
+
 if [ -d "/srv/aggregation-server" ]
 then
   cd /srv/aggregation-server && git pull
