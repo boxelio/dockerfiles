@@ -1,0 +1,25 @@
+#!/bin/sh
+
+if [ ! -f ".run-env" ]; then
+  echo "Local .run-env file does not exists. Create and try again."
+  exit 1
+fi
+
+source .run-env
+TAG=$DOCKER_IMAGE_ORG/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION
+CWD=`pwd`
+
+echo "Stopping existing instance"
+docker stop $DOCKER_INSTANCE_NAME
+
+echo "Removing existing instance"
+docker rm $DOCKER_INSTANCE_NAME
+
+echo "Creating instance of tag $TAG as $DOCKER_INSTANCE_NAME"
+CREATE_OPTIONS="--name $DOCKER_INSTANCE_NAME"
+echo "Create options: $CREATE_OPTIONS"
+docker create $CREATE_OPTIONS $TAG
+
+echo "Starting $DOCKER_INSTANCE_NAME"
+START_OPTIONS="-a $DOCKER_INSTANCE_NAME"
+docker start $START_OPTIONS

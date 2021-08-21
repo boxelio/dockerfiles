@@ -1,0 +1,20 @@
+#!/bin/sh
+
+if [ ! -f ".build-env" ]; then
+  echo "Local .build-env file does not exists. Create and try again."
+  exit 1
+fi
+
+source .build-env
+TAG=$DOCKER_IMAGE_ORG/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_VERSION
+CWD=`pwd`
+
+if [ "$DOCKER_NO_CACHE" = "true" ]; then
+  NO_CACHE="--no-cache"
+fi
+
+echo "Building from $CWD with tag $TAG"
+BUILD_OPTIONS="--progress=plain $NO_CACHE --file=$DOCKERFILE --platform=$PLATFORM -t $TAG --load ."
+echo "Build options: $BUILD_OPTIONS"
+
+docker buildx build $BUILD_OPTIONS
