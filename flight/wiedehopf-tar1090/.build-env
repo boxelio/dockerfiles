@@ -1,0 +1,6 @@
+DOCKER_IMAGE_ORG=boxel
+DOCKER_IMAGE_NAME=wiedehopf-tar1090
+DOCKER_IMAGE_VERSION=latest
+DOCKERFILE=Dockerfile
+PLATFORM=linux/arm/v6,linux/arm/v7,linux/arm64,linux/amd64
+DOCKER_NO_CACHE=false

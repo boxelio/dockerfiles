@@ -1,0 +1,5 @@
+DOCKERFILE=Dockerfile
+DOCKER_IMAGE_ORG=boxel
+DOCKER_IMAGE_NAME=kx1t-planefence
+DOCKER_IMAGE_VERSION=latest
+DOCKER_INSTANCE_NAME=kx1t-planefence
