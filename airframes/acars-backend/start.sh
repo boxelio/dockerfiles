@@ -1,13 +1,5 @@
 #!/bin/sh
 
-if [ -d "/acars-backend" ]
-then
-  cd /acars-backend
-  git pull
-else
-  git clone "https://github.com/kevinelliott/acars-backend.git" /acars-backend
-fi
-
 cp /acars-backend/.env.sample /acars-backend/.env
 sed --in-place=.bak -e "s/NATS_HOST=NATS_HOST/NATS_HOST=${NATS_HOST}/" /acars-backend/.env
 sed --in-place=.bak -e "s/NATS_PORT=NATS_PORT/NATS_PORT=${NATS_PORT}/" /acars-backend/.env
